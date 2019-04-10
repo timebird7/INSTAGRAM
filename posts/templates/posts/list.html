@@ -3,7 +3,16 @@
 {% load bootstrap4 %}
 
 {% block body %}
-  {% for post in posts %}
-    <h2>{{ post }}</h2>
-  {% endfor %}
+  <div class="justify-content-center row">
+    {% for post in posts %}
+      <div class="card" style="width: 40rem;">
+        <img src="https://picsum.photos/300/300/?random" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">{{ post }}</p>
+          <a href="{% url 'posts:delete' post.id %}" class="btn btn-danger">삭제</a>
+          <a href="{% url 'posts:update' post.id %}" class="btn btn-warning">수정</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock body %}
