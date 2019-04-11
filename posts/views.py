@@ -6,7 +6,7 @@ from .models import Post
 def create(request):
     # post를 작성하는 form을 가져와 template에서 보여줌
     if request.method == 'POST':
-        form = PostModelForm(request.POST)
+        form = PostModelForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
         return redirect('posts:list')
@@ -36,7 +36,7 @@ def update(request,post_id):
         form = PostModelForm(request.POST, instance=post)
         if form.is_valid():
             form.save()
-            return redirect('posts:list')
+        return redirect('posts:list')
     else:
         form = PostModelForm(instance=post)
         return render(request, 'posts/create.html', {'form': form})

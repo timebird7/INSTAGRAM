@@ -6,7 +6,7 @@
   {% else %}
     <h1>Post 수정하기</h1>
   {% endif %}
-  <form method="POST">
+  <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}

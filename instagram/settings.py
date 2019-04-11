@@ -25,7 +25,7 @@ SECRET_KEY = '84mc5o7qwq8rcfxta6z0r)&*i=l_vea(_1q5k#p0!8-qp!zfo^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['last-timebird7.c9users.io']
+ALLOWED_HOSTS = ['last-timebird7.c9users.io',]
 
 
 # Application definition
@@ -121,3 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
