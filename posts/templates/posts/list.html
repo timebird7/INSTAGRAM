@@ -12,8 +12,22 @@
         <img src="{{ post.image.url }}" class="card-img-top" alt="...">
         <div class="card-body">
           <p class="card-text">{{ post }}</p>
-          <a href="{% url 'posts:delete' post.id %}" class="btn btn-danger">삭제</a>
-          <a href="{% url 'posts:update' post.id %}" class="btn btn-warning">수정</a>
+          {% if request.user == post.user %}
+            <a href="{% url 'posts:delete' post.id %}" class="btn btn-danger">삭제</a>
+            <a href="{% url 'posts:update' post.id %}" class="btn btn-warning">수정</a>
+          {% endif %}
+          <form method="POST" action="{% url 'posts:create_comments' post.id %}">
+            {% csrf_token %}
+            {% bootstrap_form comment_form %}
+            {% buttons %}
+              <button type="submit" class="btn btn-primary">댓글</button>
+            {% endbuttons %}
+          </form>
+          {% for comment in comments %}
+            {% if comment.post_id == post.id %}
+              <p>{{ comment.content }}</p>
+            {% endif %}
+          {% endfor %}
         </div>
       </div>
     {% endfor %}
