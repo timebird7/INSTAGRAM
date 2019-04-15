@@ -61,3 +61,11 @@ def create_comments(request,post_id):
         comment.post_id = post_id
         comment.save()
     return redirect('posts:list')
+    
+def like(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.user in post.like_users.all():
+        post.like_users.remove(request.user)
+    else:
+        post.like_users.add(request.user)
+    return redirect('posts:list')
