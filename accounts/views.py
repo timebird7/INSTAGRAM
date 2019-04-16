@@ -49,3 +49,10 @@ def profile(request, username):
         'posts': posts,
     }
     return render(request, 'accounts/profile.html', context)
+    
+def delete(request):
+    if request.method == 'POST':
+        request.user.delete()
+        return redirect('posts:list')
+    else:
+        return render(request, 'accounts/delete.html')
